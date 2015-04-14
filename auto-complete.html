@@ -1,0 +1,59 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/core-menu/core-menu.html">
+<link rel="import" href="bower_components/paper-input/paper-input.html">
+<link rel="import" href="bower_components/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="bower_components/paper-item/paper-item.html">
+
+
+<polymer-element name="auto-complete">
+    <template>
+        <paper-input id="load_name" label="load" value="{{ search }}" on-keyup="{{ handleKeyUp }}" ></paper-input>
+        <paper-dropdown id="dropdown" class="dropdown" duration="1" opened = "false" autoCloseDisabled = "true" autoFocusDisabled = "true" style = "position: relative; top: 38px;">
+            <core-menu class="menu" selected="test">
+                <template repeat="{{result in results}}">
+                    <paper-item on-click="{{ handleSelect }}">{{result}}</paper-item>
+                </template>
+            </core-menu>
+        </paper-dropdown>
+    </template>
+    <script>
+        Polymer({
+            publish: {
+                search: {
+                    value: "",
+                    reflect: true
+                },
+                data: {
+                    value: ['ac','bc','cc'],
+                    reflect: true
+                },
+                results: {
+                    value: [],
+                    reflect: true
+                }
+            },
+            handleKeyUp: function(){
+                var self = this;
+                self.results = [];
+                self.data.forEach(function(e){
+                    if (e.indexOf(self.search) >= 0){
+                        self.results.push(e);
+                    }
+                });
+                if (!this.$.dropdown.opened) {
+                    this.$.dropdown.open();
+                }
+
+                self.$.dropdown.$.scroller.style.height = "";
+                self.$.dropdown.$.scroller.style.width = "";
+            },
+            handleSelect: function(event, detail, element){
+                this.search = element.innerText;
+                this.$.dropdown.close();
+            },
+            clear: function(){
+                this.$.load_name.value = "";
+            }
+        })
+    </script>
+</polymer-element>
