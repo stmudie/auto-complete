@@ -1,0 +1,27 @@
+{
+  "name": "auto-complete",
+  "version": "0.1.0",
+  "homepage": "https://github.com/stmudie/auto-complete",
+  "authors": [
+    "Stephen Mudie <stephen.mudie@synchrotron.org.au>"
+  ],
+  "description": "auto-complete webcomponent using google polymer paper elements",
+  "main": "auto-complete.html",
+  "keywords": [
+    "[autocomplete",
+    "webcomponents",
+    "polymer",
+    "paper",
+    "elements",
+    "material",
+    "design]"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
