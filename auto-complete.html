@@ -8,7 +8,7 @@
 <polymer-element name="auto-complete">
     <template>
         <paper-input id="load_name" label="load" value="{{ search }}" on-keyup="{{ handleKeyUp }}" ></paper-input>
-        <paper-dropdown id="dropdown" class="dropdown" duration="1" opened = "false" autoCloseDisabled = "true" autoFocusDisabled = "true" style = "position: relative; top: 38px;">
+        <paper-dropdown id="dropdown" class="dropdown" duration="1" opened = "false" autoCloseDisabled = "true" autoFocusDisabled = "true" style = "position: relative; top: 38px; width: 150px; height: 250px;">
             <core-menu class="menu" selected="test">
                 <template repeat="{{result in results}}">
                     <paper-item on-click="{{ handleSelect }}">{{result}}</paper-item>
@@ -24,7 +24,7 @@
                     reflect: true
                 },
                 data: {
-                    value: ['ac','bc','cc'],
+                    value: [],
                     reflect: true
                 },
                 results: {
@@ -43,9 +43,6 @@
                 if (!this.$.dropdown.opened) {
                     this.$.dropdown.open();
                 }
-
-                self.$.dropdown.$.scroller.style.height = "";
-                self.$.dropdown.$.scroller.style.width = "";
             },
             handleSelect: function(event, detail, element){
                 this.search = element.innerText;
